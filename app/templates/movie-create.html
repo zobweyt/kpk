@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% import "components/forms.html" as forms %}
+
+{% block body %}
+<main>
+  <form method="POST" enctype="multipart/form-data" novalidate hx-post="{{ url_for('movies.movie_create') }}" hx-target="body" hx-swap="innerHTML" hx-push-url="true">
+    {{ form.csrf_token }}
+
+    <div class="row">
+
+      <section class="col-8">
+        <div class="row">
+          
+          <div class="col-6">
+            {{ forms.dropzone(form.thumbnail) }}
+          </div>
+
+          <div class="col-6 rows">
+            {{ forms.field(form.name) }}
+            {{ forms.field(form.genre) }}
+            {{ forms.field(form.plot) }}
+            {{ forms.field(form.release_year) }}
+          </div>
+          
+        </div>
+      </section>
+
+      <aside class="col-4 columns">
+        <a href="{{ url_for('index') }}" class="btn" hx-boost="true"><i class="icon ti ti-x"></i>Отмена</a>
+        <button type="submit" class="btn btn-primary"><i class="icon ti ti-check"></i>{{ form.submit.label.text }}</button>
+      </aside>
+
+    </div>
+
+  </form>
+</main>
+
+<script src="{{ url_for('static', filename='js/image.js') }}"></script>
+{% endblock body %}

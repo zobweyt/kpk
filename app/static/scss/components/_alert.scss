@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "../base/variables";
+
+.alert {
+  padding: map.get(variables.$spacers, 3) map.get(variables.$spacers, 4);
+  margin-bottom: map.get(variables.$spacers, 2);
+  font-weight: bold;
+  color: variables.$danger;
+  border: 2px solid variables.$danger;
+  border-radius: variables.$border-radius;
+  box-shadow: variables.$box-shadow;
+}

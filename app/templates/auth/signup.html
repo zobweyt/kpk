@@ -1,0 +1,9 @@
+{% extends "auth/base.html" %}
+
+{% block form %}
+<input class="form-control" type="text" name="username" placeholder="Логин" required autofocus>
+<input class="form-control" type="email" name="email" placeholder="Почта" required>
+<input class="form-control" type="password" name="password" placeholder="Пароль" required>
+<button type="submit" class="btn btn-primary">Загерестрироваться</button>
+<a href="{{ url_for('auth.login') }}" class="btn">Вход</a>
+{% endblock form %}

@@ -1,0 +1,5 @@
+@use "../mixins/icons";
+
+.icon {
+  @include icons.icon;
+}

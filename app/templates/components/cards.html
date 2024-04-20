@@ -1,0 +1,10 @@
+{% macro movie(movie) %}
+<div class="col-2">
+  <a href="{{ url_for("movies.movie_detail", id=movie.id) }}" class="movie">
+    <span class="review__rating">{{ movie.reviews|length }}</span>
+    <img class="movie__thumbnail" src="{{ url_for("media", path=movie.thumbnail) }}">
+    <h4 class="movie__name">{{ movie.name }}</h4>
+    <p class="movie__details">{{ movie.release_year }}, {{ movie.genre }}</p>
+  </a>
+</div>
+{% endmacro %}

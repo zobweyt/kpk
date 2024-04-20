@@ -1,0 +1,22 @@
+{% macro field(field, class) %}
+  {% if field.errors %}
+    {{ field(class="form-control is-invalid", placeholder=field.label.text) }}
+  {% else %}
+    {{ field(class="form-control", placeholder=field.label.text) }}
+  {% endif %}
+{% endmacro %}
+
+{% macro dropzone(field) %}
+<div>
+  {{ field }}
+
+  <label for="{{ field.id }}" id="dropzone">
+    <div class="dropzone{% if field.errors %} is-invalid{% endif %}">
+      <svg width="115" height="56" viewBox="0 0 115 56" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip2)"><rect x="27.4476" width="60" height="44" rx="8" fill="black"></rect><rect x="27.4476" width="60" height="44" rx="8" fill="#1e293b"></rect><circle class="CbirAnimLogo-FrontImageSun" cx="44.5474" cy="14" r="5" fill="#0ea5e9"></circle><path class="CbirAnimLogo-FrontImageSmallRock" d="M75.4775 44H27.4476V35.0168L37.7574 26.0546C39.37 24.6528 41.6951 24.4307 43.5439 25.5017L75.4775 44Z" fill="#0ea5e9" fill-opacity="0.4"></path><path class="CbirAnimLogo-FrontImageBigRock" d="M87.4477 28.3282V44.0001H36.7249L64.1984 18.4113C65.8396 16.8827 68.2979 16.634 70.2121 17.8029L87.4477 28.3282Z" fill="#0ea5e9"></path></g><defs><filter id="filter0_f" x="11.4476" y="44" width="90" height="12" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend><feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur"></feGaussianBlur></filter><clipPath id="clip2"><rect x="27.4476" width="60" height="44" rx="8" fill="black"></rect></clipPath></defs></svg>
+      <p class="dropzone__help-text">{{ field.label }}</p>
+      <p>или нажмите на кнопку</p>
+      <span class="btn">Выбрать</span>
+    </div>
+  </label>
+</div>
+{% endmacro %}

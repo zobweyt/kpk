@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "../base/variables";
+@use "../mixins/motion";
+
+.dropzone {
+  @include motion.transition(border-color);
+
+  user-select: none;
+  border: 2px dashed variables.$secondary;
+  border-radius: variables.$border-radius;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: variables.$light;
+  cursor: pointer;
+
+  p {
+    margin-bottom: map.get(variables.$spacers, 2);
+  }
+
+  .dropzone__help-text {
+    color: white;
+    font-weight: bold;
+    font-size: variables.$font-size-lg;
+  }
+
+  &:hover {
+    border-color: variables.$primary;
+  }
+
+  &.is-invalid {
+    border-color: variables.$danger;
+  }
+}

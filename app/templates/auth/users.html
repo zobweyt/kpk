@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block body %}
+<form class="row" method="POST" hx-post="{{ url_for('auth.users') }}" hx-target="body" hx-swap="innerHTML" hx-push-url="true">
+  <main class="col-8 rows">
+    {% include "includes/messages.html" %}
+    <table>
+      <thead>
+        <tr>
+          <td>Айди</td>
+          <td>Логин</td>
+          <td>Почта</td>
+          <td>Модератор</td>
+          <td>Администратор</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <label class="switch" for="c{{ user.id }}">
+              <input type="checkbox" id="c{{ user.id }}" name="user_ids[]" value="{{ user.id }}" {% if user.is_staff %}checked{% endif %}>
+              <span class="slider"></span>
+            </label>
+          </td>
+          <td>{% if user.is_superuser %}Да{% else %}Нет{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </main>
+  <aside class="col-4 columns">
+    <a href="{{ url_for('index') }}" class="btn" hx-boost="true"><i class="icon ti ti-x"></i>Отмена</a>
+    <button type="submit" class="btn btn-primary"><i class="icon ti ti-check"></i>Обновить Список</button>
+  </aside>
+</form>
+{% endblock body %}

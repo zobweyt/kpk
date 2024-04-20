@@ -1,0 +1,42 @@
+@use "sass:map";
+@use "../base/variables";
+@use "../mixins/motion";
+
+@mixin button-variant($color) {
+  background: $color;
+
+  &:hover {
+    background: rgba($color, 75%);
+  }
+}
+
+.btn {
+  display: inline-flex;
+  gap: map.get(variables.$spacers, 2);
+  align-items: center;
+  justify-content: center;
+  padding: map.get(variables.$spacers, 2) map.get(variables.$spacers, 3);
+  font: inherit;
+  font-weight: bold;
+  line-height: variables.$line-height-lg;
+  color: inherit;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  border-radius: variables.$border-radius;
+
+  &:active {
+    scale: variables.$button-active-scale;
+  }
+
+  @include motion.transition(background-color, scale);
+  @include button-variant(variables.$secondary);
+}
+
+.btn-primary {
+  @include button-variant(variables.$primary);
+}
+
+.btn-danger {
+  @include button-variant(variables.$danger);
+}

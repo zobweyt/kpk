@@ -1,0 +1,63 @@
+@use "sass:map";
+@use "../base/variables";
+@use "../mixins/motion";
+
+.movie__image {
+  box-shadow: variables.$box-shadow-lg;
+}
+
+.movie {
+  display: block;
+  position: relative;
+
+  .movie__thumbnail {
+    @include motion.transition(filter, scale, transform);
+    
+    filter: variables.$movie-thumbnail-brightness;    
+    box-shadow: 0 0 1px 0 variables.$light;
+  }
+
+  .movie__name {
+    @include motion.transition(color);
+    
+    color: white;
+    font-size: variables.$font-size-base;
+    margin-top: map.get(variables.$spacers, 2);
+    margin-bottom: 0;
+  }
+
+  .movie__details {
+    color: variables.$light;
+    font-size: variables.$font-size-sm;
+    margin-top: map.get(variables.$spacers, 1);
+  }
+
+  &:hover {
+    .movie__thumbnail {
+      filter: variables.$movie-hover-thumbnail-brightness;
+      scale: variables.$movie-hover-thumbnail-scale;
+      transform: scaleX(1.04);
+    }
+
+    .review__rating {
+      opacity: 1;
+      scale: variables.$movie-hover-rating-scale;
+      transition-delay: variables.$transition-duration * 1.5;
+    }
+
+    .movie__name {
+      color: variables.$primary;
+    }
+  }
+
+  .review__rating {
+    @include motion.transition(opacity, scale);
+
+    z-index: 1;
+    position: absolute;
+    margin: 0;
+    top: 0;
+    opacity: 0;
+    scale: variables.$movie-rating-scale;
+  }
+}

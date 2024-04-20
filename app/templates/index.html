@@ -1,0 +1,16 @@
+{% extends "base-site.html" %}
+{% import "components/cards.html" as cards %}
+
+{% block content %}
+  {% if movies %}
+    <div class="row" hx-boost="true" hx-swap="innerHTML">
+      {% for movie in movies %}
+      <div class="col-2">
+        {{ cards.movie(movie) }}
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert">Тут пока что ничего нет. Зайдите от лица модератора для создания первого фильма!</div>
+  {% endif %}
+{% endblock content %}

@@ -1,0 +1,67 @@
+@use "sass:map";
+@use "../base/variables";
+@use "../mixins/motion";
+@use "../mixins/icons";
+
+.review {
+  padding: map.get(variables.$spacers, 3) map.get(variables.$spacers, 4);
+  border-radius: variables.$border-radius;
+  border: 2px solid variables.$secondary;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: map.get(variables.$spacers, 3);
+}
+.user__avatar {
+  border-radius: 50%;
+  width: 1.5rem;
+  border: 1px solid variables.$secondary;
+}
+
+.user__name {
+  margin-left: map.get(variables.$spacers, 2);
+  font-weight: bold;
+  color: variables.$light;
+}
+
+.review__rating {
+  @include motion.transition(opacity, scale);
+
+  line-height: variables.$line-height-sm;
+  color: white;
+  background-color: variables.$primary;
+  font-weight: bold;
+  border-radius: variables.$border-radius;
+  padding: map.get(variables.$spacers, 2);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  margin-top: map.get(variables.$spacers, 3);
+
+  .icon {
+    margin-right: map.get(variables.$spacers, 1);
+    font-size: variables.$font-size-sm;
+    width: variables.$font-size-base;
+    height: variables.$font-size-base;
+  }
+
+  &::before {
+    @include icons.icon;
+
+    content: "\f6a6";
+    margin-right: map.get(variables.$spacers, 1);
+    font-size: variables.$font-size-sm;
+    width: variables.$font-size-base;
+    height: variables.$font-size-base;
+  }
+}
+
+.review__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}

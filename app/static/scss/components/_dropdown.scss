@@ -1,0 +1,61 @@
+@use "sass:map";
+@use "../base/variables";
+@use "../mixins/motion";
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  .dropdown__menu {
+    @include motion.transition(scale, opacity, box-shadow, transform);
+
+    position: absolute;
+    z-index: 1000;
+    min-width: 12rem;
+    padding: variables.$dropdown-menu-padding;
+    pointer-events: none;
+    background-color: rgba(variables.$secondary, variables.$dropdown-menu-shade-percentage);
+    border: 1px solid rgba(variables.$light, 5%);
+    border-radius: variables.$border-radius;
+    opacity: 0;
+    transform-origin: top left;
+    scale: 0.96;
+    backdrop-filter: blur(variables.$dropdown-menu-blur);
+
+    .dropdown__menu__item {
+      display: flex;
+      gap: variables.$dropdown-menu-item-gap;
+      align-items: center;
+      padding: variables.$dropdown-menu-item-padding;
+      border-radius: variables.$border-radius;
+
+      .icon {
+        color: variables.$light;
+      }
+    }
+
+    .dropdown__menu__action {
+      @include motion.transition(background-color, scale, opacity, outline-width);
+
+      color: inherit;
+      user-select: none;
+
+      &:hover,
+      &:focus-visible {
+        background-color: rgba(variables.$primary, variables.$dropdown-menu-shade-percentage);
+      }
+
+      &:active {
+        opacity: 0.5;
+        scale: 0.96;
+      }
+    }
+
+    &.show {
+      pointer-events: auto;
+      box-shadow: variables.$box-shadow-lg;
+      opacity: 1;
+      scale: 1;
+    }
+  }
+}

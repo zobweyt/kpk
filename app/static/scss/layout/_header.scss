@@ -1,0 +1,21 @@
+@use "sass:map";
+@use "../base/variables";
+@use "../mixins/motion";
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: map.get(variables.$spacers, 3);
+}
+
+.logo {
+  @include motion.transition(filter);
+
+  &:hover {
+    filter: brightness(75%);
+  }
+
+  &:active {
+    filter: brightness(50%);
+  }
+}

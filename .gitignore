@@ -1,0 +1,22 @@
+# IDE
+.vs
+.vscode
+.idea
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+media/
+instance/
+
+# Distribution / packaging
+venv/
+*.env
+*.log
+
+# Unit test / coverage reports
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml

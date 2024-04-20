@@ -1,0 +1,102 @@
+{% extends "base-site.html" %}
+{% import "components/forms.html" as forms %}
+{% import "components/cards.html" as cards %}
+
+{% block content %}
+
+<div class="row">
+
+  <section class="col-2">
+    <img src="{{ url_for('media', path=movie.thumbnail) }}" class="movie__image">
+  </section>
+
+  <article class="col-6">
+    <h3>{{ movie.name }} ({{ movie.release_year }})</h3>
+    <p>{{ movie.plot }}</p>
+  </article>
+
+  <section class="col-4">
+    <h3>О фильме</h3>
+    {{ movie.genre }}
+  </section>
+
+</div>
+
+<hr>
+
+<section>
+  <h3>Похожие фильмы</h3>
+
+  <div class="row" hx-boost="true">
+    {% for movie in simular_movies %}
+    <div class="col-2">
+      {{ cards.movie(movie) }}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<hr>
+
+<div class="row">
+
+  <section class="col-8">
+    <h3>Рецензии зрителей ({{ movie.reviews|length }})</h3>
+    
+    {% include "includes/messages.html" %}
+
+    <div class="rows">
+
+      <div class="review">
+
+        <picture class="user">
+          <img src="{{ url_for('static', filename='img/avatar.svg') }}" class="user__avatar">
+          <span class="user__name">Анонимный Пользователь</span>
+        </picture>
+
+        <form method="POST" novalidate hx-post="{{ url_for('movies.movie_detail', id=movie.id) }}" hx-target="body" hx-swap="innerHTML">
+          {{ review_form.csrf_token }}
+  
+          <div class="rows">
+            {{ forms.field(review_form.title, "form-control") }}
+            {{ forms.field(review_form.rating, "form-control") }}
+            {{ forms.field(review_form.content, "form-control") }}
+            <button type="submit" class="btn btn-primary"><i class="icon ti ti-check"></i>{{ review_form.submit.label.text }}</button>
+          </div>
+        </form>
+
+      </div>
+
+      {% for review in movie.reviews %}
+      <div class="review">
+
+        <picture class="user">
+          <img src="{{ url_for('static', filename='img/avatar.svg') }}" class="user__avatar">
+          <span class="user__name">Анонимный Пользователь</span>
+        </picture>
+
+        <article>
+          <h4>{{ review.title }}</h4>
+          <p>{{ review.content|safe }}</p>
+        </article>
+
+        <div class="review__footer">
+          <span class="review__rating">{{ review.rating }} из 10</span>
+          <button type="button" hx-get="{{ url_for('movies.review_revoke', movie_id=movie.id, review_id=review.id) }}" hx-target="body" hx-swap="innerHTML" class="btn btn-danger"><i class="icon ti ti-trash"></i>Удалить рецензию</button>
+        </div>
+
+      </div>
+      {% endfor %}
+
+    </div>
+
+  </section>
+
+  <section class="col-4">
+    <h3>Рейтинг фильма</h3>
+    <span class="review__rating">{{ rating }} из 10</span>
+  </section>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+@use "sass:map";
+@use "../base/variables";
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(variables.$grid-columns, 1fr);
+  grid-row-gap: variables.$grid-gutter;
+  grid-column-gap: variables.$grid-gutter;
+}
+
+@for $i from 1 through variables.$grid-columns {
+  .col-#{$i} {
+    grid-column: span #{$i};
+  }
+}
+
+.columns {
+  display: flex;
+  gap: map.get(variables.$spacers, 2);
+}
+
+.rows {
+  @extend .columns;
+  
+  flex-direction: column;
+}
+
+.auth-form {
+  max-width: variables.$width-md;
+  width: auto;
+  margin: auto;
+  text-align: center;
+
+  .logo {
+    display: block;
+    margin-bottom: map.get(variables.$spacers, 3);
+  }
+}

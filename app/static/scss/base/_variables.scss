@@ -1,0 +1,73 @@
+@use "sass:map";
+@import "https://fonts.cdnfonts.com/css/sf-pro-display";
+@import "https://fonts.cdnfonts.com/css/sf-mono";
+
+$font-family-sans-serif: "SF Pro Display";
+$font-family-monospace: "SF Mono";
+$font-family-icons: "tabler-icons";
+
+$font-size-base: 1rem;
+$font-size-sm: $font-size-base * 0.875;
+$font-size-lg: $font-size-base * 1.25;
+$icon-size: $font-size-lg;
+
+$line-height-base: 1.25;
+$line-height-sm: 1;
+$line-height-lg: 1.5;
+
+$spacer: 1rem;
+$spacers: (
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.25,
+  5: $spacer * 3,
+);
+  
+$border-radius: map.get($spacers, 2);
+
+$light: #e5e7eb;
+$primary: #0ea5e9;
+$secondary: #1e293b;
+$danger: #ef4444;
+$success: #22c55e;
+
+$body-bg: #0b1120;
+$body-gradient: linear-gradient(to bottom right, #8b5cf6, #ec4899);
+$body-gradient-opacity: 0.035;
+$body-width: 1140px;
+
+$width-md: 18rem;
+
+/// Grids
+
+$grid-columns: 12;
+$grid-gutter: 20px;
+
+/// Motion
+
+$transition-duration: 100ms;
+$transition-timing-function: ease-out;
+
+$box-shadow: 0 2px 4px 0 rgba($light, 2%), 0 1px 1px 0 rgba($light, 4%);
+$box-shadow-lg: 0 2px 8px rgba($light, 4%), 0 30px 70px rgba($light, 8%);
+
+/// Components
+
+$button-active-scale: 0.96;
+
+/// Movies
+
+$movie-thumbnail-brightness: 75%;
+$movie-hover-thumbnail-brightness: 100%;
+$movie-hover-thumbnail-scale: 1.04;
+$movie-rating-scale: 0.88;
+$movie-hover-rating-scale: 1;
+
+/// Dropdown
+
+$dropdown-menu-padding: map.get($spacers, 1) !default;
+$dropdown-menu-blur: 10px !default;
+$dropdown-menu-shade-percentage: 75% !default;
+$dropdown-menu-item-padding: map.get($spacers, 2) !default;
+$dropdown-menu-item-gap: calc($dropdown-menu-padding + $dropdown-menu-item-padding) !default;

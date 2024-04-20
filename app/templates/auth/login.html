@@ -1,0 +1,8 @@
+{% extends "auth/base.html" %}
+
+{% block form %}
+<input class="form-control" type="text" name="username" placeholder="Логин" autofocus required>
+<input class="form-control" type="password" name="password" placeholder="Пароль" required>
+<button type="submit" class="btn btn-primary">Войти</button>
+<a href="{{ url_for('auth.signup') }}" class="btn">Регестрация</a>
+{% endblock form %}
